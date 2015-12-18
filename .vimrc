@@ -42,6 +42,18 @@ function MyDiff()
     silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
+"font coding
+set encoding=utf-8
+"set fileencodings=utf-8,chinese,latin-1
+"if has("win32")
+"set fileencoding=chinese
+"else
+"set fileencoding=utf-8
+"endif
+"source $VIMRUNTIME/delmenu.vim
+"source $VIMRUNTIME/menu.vim
+language messages zh_CN.utf-8
+
 set tags=tags;
 set autochdir
 endif
@@ -54,8 +66,13 @@ endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Let's Vundle
+"
+" mkdir ~/.vim/bundle
+" git clone https://github.com/gmarik/vundle.git  ~/.vim/bundle
+"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off                  " required!
+if 0                            " 0;1
+filetype off                    " required!
 if $OS =~ "Windows_NT"
 "for windows
 set rtp+=$HOME/.vim/bundle/vundle/
@@ -63,11 +80,11 @@ else
 set rtp+=~/.vim/bundle/vundle/  
 endif
 call vundle#rc()
-" let Vundle manage Vundle
+"let Vundle manage Vundle
 Bundle 'gmarik/vundle'
-
 Bundle 'Mark'
 Bundle 'minibufexpl.vim'
+"Bundle 'c.vim'
 Bundle 'IsOverThere/winmanager'
 Bundle 'IsOverThere/taglist'
 Bundle 'IsOverThere/vim-colors-codeschool'
@@ -77,6 +94,7 @@ Bundle 'IsOverThere/The-NERD-tree'
 "Bundle 'gilgigilgil/anderson.vim'
 
 filetype plugin indent on     " required!
+endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Use Vim settings, rather then Vi settings (much better!).
@@ -414,6 +432,11 @@ nmap <F2> :NERDTreeToggle <CR>
 imap <F2> <ESC><F2>
 
 
+"""""""""""" Tlist
+"command mode
+nmap <F3> :Tlist <CR>
+"edit mode
+imap <F3> <ESC><F3>
 """""""""""" Key map auto  
 "edit mode
 "imap <F6> <C-X><C-f>
