@@ -52,10 +52,32 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" When started as "evim", evim.vim will already have done these settings.
-if v:progname =~? "evim"
-  finish
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Let's Vundle
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype off                  " required!
+if $OS =~ "Windows_NT"
+"for windows
+set rtp+=$HOME/.vim/bundle/vundle/
+else
+set rtp+=~/.vim/bundle/vundle/  
 endif
+call vundle#rc()
+" let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+
+Bundle 'Mark'
+Bundle 'minibufexpl.vim'
+Bundle 'IsOverThere/winmanager'
+Bundle 'IsOverThere/taglist'
+Bundle 'IsOverThere/vim-colors-codeschool'
+Bundle 'IsOverThere/The-NERD-tree'
+"Bundle 'joshdick/onedark.vim'
+"Bundle 'kristijanhusak/vim-hybrid-material'
+"Bundle 'gilgigilgil/anderson.vim'
+
+filetype plugin indent on     " required!
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -126,28 +148,6 @@ if &t_Co > 2 || has("gui_running")
 endif
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Let's Vundle
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off                  " required!
-if $OS =~ "Windows_NT"
-"for windows
-set rtp+=$HOME/.vim/bundle/vundle/
-else
-set rtp+=~/.vim/bundle/vundle/  
-endif
-call vundle#rc()
-" let Vundle manage Vundle
-Bundle 'gmarik/vundle'
-
-Bundle 'Mark'
-Bundle 'minibufexpl.vim'
-Bundle 'IsOverThere/winmanager'
-Bundle 'IsOverThere/taglist'
-
-
-filetype plugin indent on     " required!
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -215,7 +215,7 @@ let g:miniBufExplModSelTarget = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "use WinManager to let TagList and netrw together
 let g:winManagerWindowLayout='FileExplorer|TagList'
-"let g:persistentBehaviour=0 " quit vim, if all files closed
+let g:persistentBehaviour=0 " quit vim, if all files closed
 let g:winManagerOnRightSide = 1
 let g:winManagerWidth = 35
 nmap wm :WMToggle<cr>
